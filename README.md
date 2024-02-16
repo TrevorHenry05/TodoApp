@@ -8,8 +8,8 @@ This project is a full-stack application featuring a React-based frontend and a 
 
 ### Prerequisites
 
-- Node.js (version X or above)
-- npm (version X or above) or yarn
+- Node.js
+- npm or yarn
 
 ### Installation
 
