@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Todo Web app RESTful API Documentation</title>
+        <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h2 { color: #2A52BE; }
+        pre { background-color: #f4f4f4; padding: 10px; }
+    </style>
+    </head>
+    <body>
+        <h1>Todo API Documentation</h1>
+
+        <section>
+            <h2>User Management Service</h2>
+            <h3>GET /api/users/profile</h3>
+            <p>Retrieves the profile of the authenticated user.</p>
+            <h4>Headers</h4>
+            <pre>Authorization: Bearer {token}</pre>
+            <h4>Response</h4>
+            <pre>
+            {
+                "username": "exampleUser",
+                "email": "user@example.com"
+            }
+            </pre>
+
+            <h3>PUT /api/users/profile</h3>
+            <p>Updates the profile of the authenticated user.</p>
+            <h4>Headers</h4>
+            <pre>Authorization: Bearer {token}</pre>
+            <h4>Body</h4>
+            <pre>
+            {
+                "username": "newUsername",
+                "email": "newemail@example.com"
+            }
+            </pre>
+            <h4>Response</h4>
+            <pre>
+            {
+                "message": "User updated successfully."
+            }
+            </pre>
+
+            <h3>DELETE /api/users/profile</h3>
+            <p>Deletes the account of the authenticated user.</p>
+            <h4>Headers</h4>
+            <pre>Authorization: Bearer {token}</pre>
+            <h4>Response</h4>
+            <pre>
+            {
+                "message": "User deleted successfully."
+            }
+            </pre>
+        </section>
+
+        <section>
+            <h2>UserAuthService</h2>
+            <h3>POST /api/auth/register</h3>
+            <p>Registers a new user and returns a token.</p>
+            <h4>Body</h4>
+            <pre>
+            {
+                "username": "exampleUser",
+                "email": "user@example.com",
+                "password": "password123"
+            }
+            </pre>
+            <h4>Response</h4>
+            <pre>
+            {
+                "token": "{token}"
+            }
+            </pre>
+            <h3>POST /api/auth/login</h3>
+            <p>Authenticates a user and returns a token.</p>
+            <h4>Body</h4>
+            <pre>
+            {
+                "email": "user@example.com",
+                "password": "password123"
+            }
+            </pre>
+            <h4>Response</h4>
+            <pre>
+            {
+                "token": "{token}"
+            }
+            </pre>
+        </section>
+
+        <section>
+            <h2>Task Management Service</h2>
+            <h3>GET /api/tasks</h3>
+            <p>Retrieves all tasks created by the authenticated user.</p>
+            <h4>Headers</h4>
+            <pre>Authorization: Bearer {token}</pre>
+            <h4>Response</h4>
+            <pre>
+            [
+                {
+                    "id": "taskId1",
+                    "title": "Task 1",
+                    "description": "Description of Task 1",
+                    "completed": false,
+                    "userId": "userId"
+                },
+                {
+                    "id": "taskId2",
+                    "title": "Task 2",
+                    "description": "Description of Task 2",
+                    "completed": true,
+                    "userId": "userId"
+                }
+            ]
+            </pre>
+
+            <h3>GET /api/tasks/{id}</h3>
+            <p>Retrieves a specific task by ID for the authenticated user.</p>
+            <h4>Headers</h4>
+            <pre>Authorization: Bearer {token}</pre>
+            <h4>URL Parameters</h4>
+            <pre>id: The ID of the task to retrieve</pre>
+            <h4>Response</h4>
+            <pre>
+            {
+                "id": "taskId",
+                "title": "Task Title",
+                "description": "Task description",
+                "completed": false,
+                "userId": "userId"
+            }
+            </pre>
+
+            <h3>PUT /api/tasks/{id}</h3>
+            <p>Updates a specific task identified by ID for the authenticated
+                user.</p>
+            <h4>Headers</h4>
+            <pre>Authorization: Bearer {token}</pre>
+            <h4>URL Parameters</h4>
+            <pre>id: The ID of the task to update</pre>
+            <h4>Body</h4>
+            <pre>
+            {
+                "title": "Updated Task Title",
+                "description": "Updated description",
+                "completed": true
+            }
+            </pre>
+            <h4>Response</h4>
+            <pre>
+            {
+                "id": "taskId",
+                "title": "Updated Task Title",
+                "description": "Updated description",
+                "completed": true,
+                "userId": "userId"
+            }
+            </pre>
+
+            <h3>DELETE /api/tasks/{id}</h3>
+            <p>Deletes a specific task identified by ID for the authenticated
+                user.</p>
+            <h4>Headers</h4>
+            <pre>Authorization: Bearer {token}</pre>
+            <h4>URL Parameters</h4>
+            <pre>id: The ID of the task to delete</pre>
+            <h4>Response</h4>
+            <pre>
+            {
+                "message": "Task deleted successfully"
+            }
+            </pre>
+
+        </section>
+    </body>
+</html>

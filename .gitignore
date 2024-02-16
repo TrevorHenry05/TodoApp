@@ -1,0 +1,44 @@
+# Node.js backend (todo-list-backend) ignores
+/todo-list-backend/node_modules/
+/todo-list-backend/package-lock.json
+/todo-list-backend/.env
+/todo-list-backend/*.log
+/todo-list-backend/tmp/
+/todo-list-backend/dist/
+
+# React frontend (todo-list-frontend) ignores
+/todo-list-frontend/node_modules/
+/todo-list-frontend/package-lock.json
+/todo-list-frontend/.env
+/todo-list-frontend/build/
+/todo-list-frontend/.cache/
+/todo-list-frontend/coverage/
+
+# Common ignores for both frontend and backend
+*.log
+*.tmp
+*.temp
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# IDE/Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+
+# Optional npm cache & logs
+.npm
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Compiled files
+*.compiled
+*.cache
+*.tsbuildinfo
