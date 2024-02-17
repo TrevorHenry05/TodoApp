@@ -39,7 +39,7 @@ router.put("/profile", async (req, res) => {
     const updatedUser = user.toObject();
     delete updatedUser.password;
 
-    res.json(updatedUser);
+    res.status(200).json(updatedUser);
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }

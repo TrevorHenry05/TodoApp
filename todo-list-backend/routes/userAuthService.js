@@ -10,7 +10,7 @@ router.post("/register", async (req, res) => {
   try {
     let user = await User.findOne({ email });
     if (user) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ error: "User already exists" });
     }
 
     user = new User({ username, email, password });
@@ -21,7 +21,7 @@ router.post("/register", async (req, res) => {
 
     res.status(201).json({ token });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
@@ -31,12 +31,12 @@ router.post("/login", async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ error: "Invalid credentials" });
     }
 
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Invalid credentials" });
+      return res.status(400).json({ error: "Invalid credentials" });
     }
 
     // Create token
@@ -44,7 +44,7 @@ router.post("/login", async (req, res) => {
 
     res.status(200).json({ token });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: error.message });
   }
 });
 

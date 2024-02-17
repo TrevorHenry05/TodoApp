@@ -21,9 +21,29 @@
             <pre>Authorization: Bearer {token}</pre>
             <h4>Response</h4>
             <pre>
+            Status: 200
             {
                 "username": "exampleUser",
                 "email": "user@example.com"
+            }
+            </pre>
+            <h4>Error Response</h4>
+            <pre>
+            Status: 401
+            {
+                "error": "Authorization token required"
+            }
+            Status: 401
+            {
+                "error": "Request is not authorized"
+            }
+            Status: 404
+            {
+                "error": "User not found"
+            }
+            Status: 500
+            {
+                "error": "Internal Server Error"
             }
             </pre>
 
@@ -41,8 +61,28 @@
             </pre>
             <h4>Response</h4>
             <pre>
+            Status: 200
             {
                 "message": "User updated successfully."
+            }
+            </pre>
+            <h4>Error Response</h4>
+            <pre>
+            Status: 401
+            {
+                "error": "Authorization token required"
+            }
+            Status: 401
+            {
+                "error": "Request is not authorized"
+            }
+            Status: 404
+            {
+                "error": "User not found"
+            }
+            Status: 500
+            {
+                "error": "Internal Server Error"
             }
             </pre>
 
@@ -52,8 +92,28 @@
             <pre>Authorization: Bearer {token}</pre>
             <h4>Response</h4>
             <pre>
+            Status: 200
             {
                 "message": "User deleted successfully."
+            }
+            </pre>
+            <h4>Error Response</h4>
+            <pre>
+            Status: 401
+            {
+                "error": "Authorization token required"
+            }
+            Status: 401
+            {
+                "error": "Request is not authorized"
+            }
+            Status: 404
+            {
+                "error": "User not found"
+            }
+            Status: 500
+            {
+                "error": "Internal Server Error"
             }
             </pre>
         </section>
@@ -72,8 +132,20 @@
             </pre>
             <h4>Response</h4>
             <pre>
+            Status: 201
             {
                 "token": "{token}"
+            }
+            </pre>
+            <h4>Error Response</h4>
+            <pre>
+            Status: 400
+            {
+                "error": "User already exists"
+            }
+            Status: 500
+            {
+                "error": error.message
             }
             </pre>
             <h3>POST /api/auth/login</h3>
@@ -87,36 +159,97 @@
             </pre>
             <h4>Response</h4>
             <pre>
+            Status: 200
             {
                 "token": "{token}"
+            }
+            </pre>
+            <h4>Error Response</h4>
+            <pre>
+            Status: 400
+            {
+                "error": "Invalid credentials"
+            }
+            Status: 500
+            {
+                "error": error.message
             }
             </pre>
         </section>
 
         <section>
             <h2>Task Management Service</h2>
+            <h3>POST /api/tasks</h3>
+            <p>Creates a new task for the authenticated user.</p>
+            <h4>Headers</h4>
+            <pre>Authorization: Bearer {token}</pre>
+            <h4>Response</h4>
+            <pre>
+            Status: 201
+            {
+                "id": "taskId1",
+                "title": "Task 1",
+                "description": "Description of Task 1",
+                "completed": false,
+                "userId": "userId"
+            }
+            </pre>
+            <h4>Error Response</h4>
+            <pre>
+            Status: 401
+            {
+                "error": "Authorization token required"
+            }
+            Status: 401
+            {
+                "error": "Request is not authorized"
+            }
+            Status: 500
+            {
+                "error": error.message
+            }
+            </pre>
+
             <h3>GET /api/tasks</h3>
             <p>Retrieves all tasks created by the authenticated user.</p>
             <h4>Headers</h4>
             <pre>Authorization: Bearer {token}</pre>
             <h4>Response</h4>
             <pre>
-            [
-                {
-                    "id": "taskId1",
-                    "title": "Task 1",
-                    "description": "Description of Task 1",
-                    "completed": false,
-                    "userId": "userId"
-                },
-                {
-                    "id": "taskId2",
-                    "title": "Task 2",
-                    "description": "Description of Task 2",
-                    "completed": true,
-                    "userId": "userId"
-                }
-            ]
+            Status: 200
+            {
+                "data": [
+                    {
+                        "id": "taskId1",
+                        "title": "Task 1",
+                        "description": "Description of Task 1",
+                        "completed": false,
+                        "userId": "userId"
+                    },
+                    {
+                        "id": "taskId2",
+                        "title": "Task 2",
+                        "description": "Description of Task 2",
+                        "completed": true,
+                        "userId": "userId"
+                    }
+                ]
+            }
+            </pre>
+            <h4>Error Response</h4>
+            <pre>
+            Status: 401
+            {
+                "error": "Authorization token required"
+            }
+            Status: 401
+            {
+                "error": "Request is not authorized"
+            }
+            Status: 500
+            {
+                "error": error.message
+            }
             </pre>
 
             <h3>GET /api/tasks/{id}</h3>
@@ -127,12 +260,28 @@
             <pre>id: The ID of the task to retrieve</pre>
             <h4>Response</h4>
             <pre>
+            Status: 200
             {
                 "id": "taskId",
                 "title": "Task Title",
                 "description": "Task description",
                 "completed": false,
                 "userId": "userId"
+            }
+            </pre>
+            <h4>Error Response</h4>
+            <pre>
+            Status: 401
+            {
+                "error": "Authorization token required"
+            }
+            Status: 401
+            {
+                "error": "Request is not authorized"
+            }
+            Status: 500
+            {
+                "error": error.message
             }
             </pre>
 
@@ -153,12 +302,28 @@
             </pre>
             <h4>Response</h4>
             <pre>
+            Status: 200
             {
                 "id": "taskId",
                 "title": "Updated Task Title",
                 "description": "Updated description",
                 "completed": true,
                 "userId": "userId"
+            }
+            </pre>
+            <h4>Error Response</h4>
+            <pre>
+            Status: 401
+            {
+                "error": "Authorization token required"
+            }
+            Status: 401
+            {
+                "error": "Request is not authorized"
+            }
+            Status: 500
+            {
+                "error": error.message
             }
             </pre>
 
@@ -173,6 +338,22 @@
             <pre>
             {
                 "message": "Task deleted successfully"
+            }
+            </pre>
+
+            <h4>Error Response</h4>
+            <pre>
+            Status: 401
+            {
+                "error": "Authorization token required"
+            }
+            Status: 401
+            {
+                "error": "Request is not authorized"
+            }
+            Status: 500
+            {
+                "error": error.message
             }
             </pre>
 
